@@ -11,6 +11,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
@@ -20,7 +21,9 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port http://localhost:${process.env.PORT}`);
+const PORT = process.env.PORT || 4003;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port http://localhost:${PORT}`);
   connectMongoDB();
 });
